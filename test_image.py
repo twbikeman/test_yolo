@@ -1,0 +1,23 @@
+import cv2
+import time
+import queue
+
+
+videoSource = cv2.VideoCapture(0)
+timestamp = 0;
+
+while True:
+    videoSource.set(cv2.CAP_PROP_POS_FRAMES, 0)
+    ret, frame = videoSource.read()
+    cv2.imshow('camera', frame)
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('q'):
+        break
+    if key == ord('r'):
+        cv2.imwrite('test.png',  frame)
+        print('record!')
+
+        
+
+videoSource.release()
+cv2.destroyAllWindows()
